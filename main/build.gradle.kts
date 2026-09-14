@@ -16,6 +16,7 @@ dependencies {
     compileOnly(project(":platform-paper-native"))
 
     implementation("com.tchristofferson:ConfigUpdater:2.2")
+    implementation("commons-lang:commons-lang:2.6")
     compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.7")
 
@@ -23,7 +24,6 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.32")
 
     //testImplementation("org.yaml:snakeyaml:1.15")
-    //testImplementation("commons-lang:commons-lang:2.6")
     testImplementation("org.testng:testng:7.10.2")
 }
 
