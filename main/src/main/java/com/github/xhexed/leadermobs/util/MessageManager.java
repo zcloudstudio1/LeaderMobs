@@ -9,24 +9,13 @@ public class MessageManager implements MessageSender {
 
     public MessageManager(Plugin plugin) {
         try {
-            // Adventure may be present on a hybrid server without native Bukkit methods.
-            Class<?> component = Class.forName("net.kyori.adventure.text.Component");
-            Class<?> title = Class.forName("net.kyori.adventure.title.Title");
-            CommandSender.class.getMethod("sendMessage", component);
-            Player.class.getMethod("sendActionBar", component);
-            Player.class.getMethod("showTitle", title);
+            Class.forName("net.kyori.adventure.text.Component");
             Class.forName("net.kyori.adventure.text.minimessage.MiniMessage").getDeclaredMethod("miniMessage");
-            plugin.getLogger().info("Using native Paper message sender");
+            plugin.getLogger().info("Using native paper message sender (1.16.5+)");
             sender = new PaperNativeMessageSender();
-        } catch (ReflectiveOperationException | LinkageError e) {
-            plugin.getLogger().info("Using Bukkit Adventure message sender");
+        } catch (Exception e) {
             sender = new LegacyMessageSender(plugin);
         }
-    }
-
-    @Override
-    public void close() {
-        sender.close();
     }
 
     @Override

@@ -38,7 +38,10 @@ tasks {
         }
     }
     shadowJar {
-        relocate("com.tchristofferson.configupdater", "com.github.xhexed.leadermobs.internal.configupdater")
+        relocate("com.bgsoftware.common.config", "com.github.xhexed.leadermobs.config")
+    }
+    compileTestJava {
+        sourceCompatibility = "21"
     }
     test {
         useTestNG()

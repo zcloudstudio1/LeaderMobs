@@ -7,6 +7,7 @@ repositories {
     maven("https://mvn.lumine.io/repository/maven-public/")
 }
 
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT") {

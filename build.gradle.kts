@@ -11,9 +11,6 @@ allprojects {
 }
 
 tasks {
-    check {
-        dependsOn(subprojects.map { "${it.path}:check" })
-    }
     jar {
         dependsOn(shadowJar)
     }

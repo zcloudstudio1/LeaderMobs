@@ -6,6 +6,7 @@ repositories {
     maven("https://repo.papermc.io/repository/maven-public/")
 }
 
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 dependencies {
     compileOnly(project(":common"))
