@@ -15,7 +15,7 @@ dependencies {
     compileOnly(project(":platform-legacy"))
     compileOnly(project(":platform-paper-native"))
 
-    implementation("com.tchristofferson:ConfigUpdater:2.1-SNAPSHOT")
+    implementation("com.tchristofferson:ConfigUpdater:2.2")
     compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.4")
 
