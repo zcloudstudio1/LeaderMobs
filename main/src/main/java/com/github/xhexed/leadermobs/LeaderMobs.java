@@ -50,36 +50,40 @@ public class LeaderMobs extends JavaPlugin {
         PluginManager manager = getServer().getPluginManager();
         boolean found = false;
         if (manager.isPluginEnabled("MythicMobs")) {
-            final String[] version = Objects.requireNonNull(manager.getPlugin("MythicMobs")).getDescription().getVersion().split("\\.");
-            final int mainVersion = Integer.parseInt(version[0]);
-            if (mainVersion < 4 || (mainVersion == 4 && Integer.parseInt(version[1]) < 9)) {
-                getLogger().info("Found legacy version of MythicMobs (4.9.0-)");
-                registerPluginHook("com.github.xhexed.leadermobs.listener.LegacyMythicMobsListener");
-            }
-            else {
+            ClassLoader hookLoader = manager.getPlugin("MythicMobs").getClass().getClassLoader();
+            try {
+                Class.forName("io.lumine.mythic.bukkit.MythicBukkit", false, hookLoader);
                 getLogger().info("Found MythicMobs");
-                registerPluginHook("com.github.xhexed.leadermobs.listener.MythicMobsListener");
+                found |= registerPluginHook("com.github.xhexed.leadermobs.listener.MythicMobsListener");
+            } catch (ClassNotFoundException e) {
+                getLogger().info("Found legacy MythicMobs API");
+                found |= registerPluginHook("com.github.xhexed.leadermobs.listener.LegacyMythicMobsListener");
             }
-            found = true;
         }
         if (manager.isPluginEnabled("EliteMobs")) {
             getLogger().info("Found EliteMobs");
-            registerPluginHook("com.github.xhexed.leadermobs.listener.EliteMobsListener");
-            found = true;
+            found |= registerPluginHook("com.github.xhexed.leadermobs.listener.EliteMobsListener");
         }
         if (!found) {
             getLogger().warning("Couldn't find any custom mobs plugin...");
         }
     }
 
-    private void registerPluginHook(String className) {
+    private boolean registerPluginHook(String className) {
         try {
             Class.forName(className).getDeclaredConstructor(getClass()).newInstance(this);
-        } catch (final Exception e) {
-            getLogger().fine("Error while registering hook: " + e);
+            return true;
+        } catch (ReflectiveOperationException | LinkageError e) {
+            getLogger().log(java.util.logging.Level.SEVERE, "Failed to register mob hook " + className, e);
+            return false;
         }
     }
 
+
+    @Override
+    public void onDisable() {
+        if (messageManager != null) messageManager.close();
+    }
 
     public void reloadPlugin() {
         configManager.reloadConfig();

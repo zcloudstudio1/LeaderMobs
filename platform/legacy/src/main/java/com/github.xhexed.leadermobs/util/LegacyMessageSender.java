@@ -45,6 +45,11 @@ public class LegacyMessageSender implements MessageSender {
         ));
     }
 
+    @Override
+    public void close() {
+        audiences.close();
+    }
+
     private Component getComponent(String input) {
         if (input.contains("§")) {
             return LegacyComponentSerializer.legacySection().deserialize(input);

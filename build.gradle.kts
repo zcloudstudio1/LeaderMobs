@@ -7,10 +7,13 @@ plugins {
 
 allprojects {
     group = "com.github.xhexed"
-    version = "2.2.2"
+    version = "2.2.3-mc1.21.1"
 }
 
 tasks {
+    check {
+        dependsOn(subprojects.map { "${it.path}:check" })
+    }
     jar {
         dependsOn(shadowJar)
     }

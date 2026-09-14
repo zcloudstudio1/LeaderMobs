@@ -2,8 +2,8 @@ author: xHexed
 name: LeaderMobs
 main: com.github.xhexed.leadermobs.LeaderMobs
 version: ${version}
-api-version: "1.13"
-softdepend: [MythicMobs, EliteMobs]
+api-version: "1.21.1"
+softdepend: [MythicMobs, EliteMobs, PlaceholderAPI]
 commands:
   lm:
     usage: /lm
