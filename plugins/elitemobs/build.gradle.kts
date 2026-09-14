@@ -8,7 +8,7 @@ repositories {
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 dependencies{
     compileOnly("com.magmaguy:EliteMobs:9.1.10")

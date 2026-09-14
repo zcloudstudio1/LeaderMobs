@@ -11,7 +11,7 @@ repositories {
 dependencies {
     compileOnly(project(":common"))
 
-    compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT") {
+    compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT") {
         isTransitive = false
     }
     implementation("net.kyori:adventure-platform-bukkit:4.3.2")

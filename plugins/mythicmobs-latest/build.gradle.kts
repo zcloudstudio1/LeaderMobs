@@ -7,10 +7,10 @@ repositories {
     maven("https://mvn.lumine.io/repository/maven-public/")
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT") {
+    compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT") {
         isTransitive = false
     }
     compileOnly("io.lumine:Mythic-Dist:5.6.2")
